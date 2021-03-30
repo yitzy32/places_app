@@ -12,4 +12,9 @@ class Api::PlacesController < ApplicationController
     @place.save
     render "show.json.jb"
   end
+
+  def show
+    @place = Place.find_by(id: params[:id])
+    render "show.json.jb"
+  end
 end
