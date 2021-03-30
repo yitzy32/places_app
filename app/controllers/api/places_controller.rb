@@ -19,10 +19,16 @@ class Api::PlacesController < ApplicationController
   end
 
   def update
-    @place = Place.find_by(id: 2)
+    @place = Place.find_by(id: params[:id])
     @place.name = params[:name]
     @place.address = params[:address]
     @place.save
     render "show.json.jb"
+  end
+
+  def destroy
+    @place = Place.find_by(id: params[:id])
+    @place.destroy
+    render json: { message: "place deleted" }
   end
 end
