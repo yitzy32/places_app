@@ -9,8 +9,11 @@ class Api::PlacesController < ApplicationController
       name: params[:name],
       address: params[:address],
     )
-    @place.save
-    render "show.json.jb"
+    if @place.save
+      render "show.json.jb"
+    else
+      render json: { error: @place.errors.full_messages }
+    end
   end
 
   def show
